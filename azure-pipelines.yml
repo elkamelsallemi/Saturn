@@ -27,7 +27,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Saturn.Web/Dockerfile'
-        containerRegistry: 'ContainerRegistryServiceConnection'
+        containerRegistry: 'ContainerRegistrySC'
         tags: |
           $(tag)
 
@@ -40,10 +40,10 @@ stages:
     pool:
       name: 'Default'
     variables:
-    - group: Release
+    - group: Release-Saturn
     steps:
     - task: AzureWebAppContainer@1
       inputs:
        appName: $(WebAppName)
-       azureSubscription: 'WebAppServiceConnection'
+       azureSubscription: 'WebAppSC'
        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
