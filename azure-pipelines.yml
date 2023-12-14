@@ -9,6 +9,7 @@ trigger:
 variables:
   buildConfiguration: 'Release'
   webRepository: 'web'
+  dockerHubRepository: 'sallamielkamel/saturn.web'
   tag: '$(Build.BuildId)'
 
 stages:
@@ -21,13 +22,13 @@ stages:
       name: 'Default'
     steps:
     - task: Docker@2
-      displayName: 'Build and push the image to container registry'
+      displayName: 'Build and push the image to Docker Hub'
       inputs:
         command: buildAndPush
-        buildContext: $(Build.Repository.LocalPath)
-        repository: $(webRepository)
+        containerRegistryType: 'Container Registry'
+        containerRegistryEndpoint: 'DockerHubConnection'  # Docker Hub service connection name
+        repository: $(dockerHubRepository)
         dockerfile: '$(Build.SourcesDirectory)/Saturn.Web/Dockerfile'
-        containerRegistry: 'ContainerRegistrySC'
         tags: |
           $(tag)
 
@@ -46,4 +47,4 @@ stages:
       inputs:
        appName: $(WebAppName)
        azureSubscription: 'WebAppSC'
-       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+       imageName: $(dockerHubRepository):$(build.buildId)
