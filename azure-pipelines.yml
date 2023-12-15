@@ -28,7 +28,7 @@ stages:
         containerRegistryType: 'Container Registry'
         containerRegistryEndpoint: 'DockerHubConnection'  # Docker Hub service connection name
         repository: $(dockerHubRepository)
-        dockerfile: '$(Build.SourcesDirectory)/Saturn.Web/Dockerfile'
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
 
