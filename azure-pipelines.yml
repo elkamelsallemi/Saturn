@@ -46,5 +46,5 @@ stages:
     - task: AzureWebAppContainer@1
       inputs:
        appName: $(WebAppName)
-       azureSubscription: 'WebAppSC'
+       azureSubscription: 'WebAppServiceConnection'
        imageName: $(dockerHubRepository):$(build.buildId)
