@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Saturn.web/Saturn.web.csproj", "Saturn.web/"]
+COPY ["**/Saturn.web/Saturn.web.csproj", "Saturn.web/"]
 RUN dotnet restore "Saturn.web/Saturn.web.csproj"
 COPY . .
 WORKDIR "/src/Saturn.web"
