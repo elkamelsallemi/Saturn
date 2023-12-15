@@ -8,7 +8,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["**/Saturn.web/Saturn.web.csproj", "Saturn.web/"]
-RUN dotnet restore "**/Saturn.web.csproj"
+RUN ls -R 
+RUN dotnet restore "Saturn.web.csproj"
 COPY . .
 WORKDIR "/src/Saturn.web"
 RUN dotnet build "Saturn.web.csproj" -c Release -o /app/build
