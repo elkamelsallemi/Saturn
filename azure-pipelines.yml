@@ -41,7 +41,7 @@ stages:
     pool:
       name: 'Default'
     variables:
-    - group: Release-Saturn
+    - group: Release
     steps:
     - task: AzureWebAppContainer@1
       inputs:
